@@ -1,3 +1,22 @@
+/*
+  MP3 Shield Trigger
+  by: Jim Lindblom
+      SparkFun Electronics
+  date: September 23, 2013
+
+  Modified by Shawn Hymel for Conundrum
+  date: February 11
+
+  Connections:
+   - MP3 Player Shield on Arduino UNO
+   - Short A0, A1, A2, A3, or A4 to ground to play one of:
+     A0 - track001.mp3
+     A1 - track002.mp3
+     A2 - track003.mp3
+     A3 - track004.mp3
+     A4 - track005.mp3
+ */
+
 #include <SPI.h>           // SPI library
 #include <SdFat.h>         // SDFat Library
 #include <SdFatUtil.h>     // SDFat Util Library
@@ -13,7 +32,7 @@ const uint16_t monoMode = 1;  // Mono setting 0=off, 3=max
 
 /* Pin setup */
 #define TRIGGER_COUNT 9
-int triggerPins[TRIGGER_COUNT] = {0, 1, 5, 10, A0, A1, A2, A3, A4};
+int triggerPins[TRIGGER_COUNT] = {A0, A1, A2, A3, A4};
 int stopPin = A5; // This pin triggers a track stop.
 int lastTrigger = 0; // This variable keeps track of which tune is playing
 
