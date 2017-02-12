@@ -89,11 +89,11 @@ void loop() {
       newState = 0;
     }
 
-    if((!digitalRead(CAB_1_REED)) && (0.583 < scale.get_units() < 0.585)){
+    if((!digitalRead(CAB_1_REED)) && (scale.get_units() < 0.59) && (scale.get_units() > 0.58)){
       advancePuzzle();
     }
     
-    delay(500); // Don't spam the scale too hard
+    delay(100); // Don't spam the scale too hard
     
     }
 
@@ -113,11 +113,11 @@ void loop() {
       newState = 0;
     }
 
-    if(!digitalRead(CAB_1_REED)){
+    if(!digitalRead(CAB_2_REED)){
       advancePuzzle();
     }
     
-    delay(250); // Feels silly to check every few microseconds
+    delay(100); // Feels silly to check every few microseconds
     
     }  
 
@@ -127,6 +127,7 @@ void loop() {
   // This is the SOLVED state. Both auxilary lights are lit
     if(newState){// When first entering this state set the conditions
       digitalWrite(CAB_2_LATCH, 1); // Lock Cabinet 2
+      digitalWrite(CAB_3_LATCH, 0); // Unlock Cabinet 3      
       digitalWrite(CAB_2_LIGHTS, 0); // Dectivate Cabinet 2 Lights
       digitalWrite(CAB_3_LIGHTS, 1); // Activate Cabinet 3 Lights
       newState = 0;
@@ -172,4 +173,3 @@ void advancePuzzle() {
   }
   
 }
-
