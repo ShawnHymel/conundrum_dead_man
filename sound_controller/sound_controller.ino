@@ -22,6 +22,9 @@
 #include <SdFatUtil.h>     // SDFat Util Library
 #include <SFEMP3Shield.h>  // Mp3 Shield Library
 
+// Parameters
+const int init_delay = 5000;    // milliseconds
+
 SdFat sd; // Create object to handle SD functions
 
 SFEMP3Shield MP3player; // Create Mp3 library object
@@ -47,6 +50,8 @@ void setup()
 
   initSD();  // Initialize the SD card
   initMP3Player(); // Initialize the MP3 Shield
+
+  delay(init_delay);
 }
 
 // All the loop does is continuously step through the trigger
