@@ -90,6 +90,7 @@ void loop() {
     }
 
     if((!digitalRead(CAB_1_REED)) && (scale.get_units() < 0.59) && (scale.get_units() > 0.58)){
+      digitalWrite(CAB_1_LATCH, 1); // Lock Cabinet 1
       advancePuzzle();
     }
     
@@ -105,7 +106,6 @@ void loop() {
   // is inactive. We advance to state 3 when the CAB_2_REED is LOW
 
     if(newState){// When first entering this state set the conditions
-      digitalWrite(CAB_1_LATCH, 1); // Lock Cabinet 1
       digitalWrite(CAB_2_LATCH, 0); // Unock Cabinet 2
       digitalWrite(CAB_1_LIGHTS, 0); // Dectivate Cabinet 1 Lights
       digitalWrite(CAB_2_LIGHTS, 1); // Activate Cabinet 2 Lights
@@ -114,6 +114,7 @@ void loop() {
     }
 
     if(!digitalRead(CAB_2_REED)){
+      digitalWrite(CAB_2_LATCH, 1); // Lock Cabinet 2
       advancePuzzle();
     }
     
@@ -126,7 +127,6 @@ void loop() {
   while(puzzleState==3){
   // This is the SOLVED state. Both auxilary lights are lit
     if(newState){// When first entering this state set the conditions
-      digitalWrite(CAB_2_LATCH, 1); // Lock Cabinet 2
       digitalWrite(CAB_3_LATCH, 0); // Unlock Cabinet 3      
       digitalWrite(CAB_2_LIGHTS, 0); // Dectivate Cabinet 2 Lights
       digitalWrite(CAB_3_LIGHTS, 1); // Activate Cabinet 3 Lights
